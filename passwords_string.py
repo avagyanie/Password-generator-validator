@@ -1,3 +1,6 @@
+from string import ascii_lowercase, ascii_uppercase, digits, punctuation
+
+
 # File to store passwords
 PASSWORD_FILE = "passwords.txt"
 passwords = {}
@@ -21,16 +24,15 @@ def validate_password(password):
     assert len(password) >= 6, "Your password must contain at least 6 characters!"
 
     has_lower = has_upper = has_digit = has_special = False
-    special_characters = "~`!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/"
 
     for char in password:
-        if 'a' <= char <= 'z':
+        if char in ascii_lowercase:
             has_lower = True
-        elif 'A' <= char <= 'Z':
+        elif char in ascii_uppercase:
             has_upper = True
-        elif '0' <= char <= '9':
+        elif char in digits:
             has_digit = True
-        elif char in special_characters:
+        elif char in punctuation:
             has_special = True
         else:
             raise Exception("Unsupported symbol in password!")
